@@ -5,12 +5,12 @@ import food from "../../assets/icons8-restaurant-64.png";
 import Details from "../../components/Wrapper/Details";
 import Items from "../../components/Wrapper/Items";
 const ITEMS = [
-  { name: "Hamburger", price: 80, img: food},
-  { name: "Cheeseburger", price: 90, img: food},
-  { name: "Fries", price: 45, img: food},
-  { name: "Coffee", price: 70, img: drink},
-  { name: "Tea", price: 50, img: drink},
-  { name: "Cola", price: 40, img: drink},
+  { name: "Hamburger", price: 80, img: food },
+  { name: "Cheeseburger", price: 90, img: food },
+  { name: "Fries", price: 45, img: food },
+  { name: "Coffee", price: 70, img: drink },
+  { name: "Tea", price: 50, img: drink },
+  { name: "Cola", price: 40, img: drink },
 ];
 
 function App() {
@@ -33,15 +33,9 @@ function App() {
       prev.map((item) => {
         const itemCopy = { ...item };
         if (item.name === name) {
+          const itemFromITEMS = ITEMS.find((i) => i.name === name)!;
           itemCopy.count = item.count + 1;
-          itemCopy.price =
-            itemCopy.count *
-            ITEMS.reduce((acc, i) => {
-              if (i.name === name) {
-                return acc + i.price;
-              }
-              return acc;
-            }, 0);
+          itemCopy.price = itemCopy.count * itemFromITEMS.price;
         }
         return itemCopy;
       })
