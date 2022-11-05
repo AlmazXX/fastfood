@@ -1,0 +1,10 @@
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total span {
+  border-top: 2px solid #000;
+  padding: 5px 35px;
+}
