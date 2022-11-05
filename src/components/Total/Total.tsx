@@ -1,13 +1,15 @@
-import React from 'react';
-import './Total.css';
+import React from "react";
+import "./Total.css";
 
-interface Props {total : number}
+interface Props {
+  total: number;
+}
 
-const Total: React.FC<Props> = ({total}) => {
+const Total: React.FC<Props> = ({ total }) => {
   return (
-    <p className='total'>
-        Total: <span>{total} KGS</span>
-      </p>
+    <p className="total">
+      Total: <span>{total} KGS</span>
+    </p>
   );
 };
 
