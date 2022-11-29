@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import { IItemData } from "../../types";
 import Detail from "../Detail/Detail";
 import Total from "../Total/Total";
@@ -10,9 +10,9 @@ interface Props {
   deleteItem: (name: string) => void;
 }
 
-const Details: React.FC<Props> = ({ itemData, total, deleteItem }) => {
+const Details: FC<Props> = ({ itemData, total, deleteItem }) => {
   const conditionalRender = itemData.some((item) => item.count) ? (
-    <React.Fragment>
+    <>
       {itemData
         .filter((item) => item.count)
         .map((item) => (
@@ -25,10 +25,10 @@ const Details: React.FC<Props> = ({ itemData, total, deleteItem }) => {
           />
         ))}
       <Total total={total}/>
-    </React.Fragment>
+    </>
   ) : (
     <p>
-      Order is empty<br></br>Please add some items!
+      Order is empty<br/>Please add some items!
     </p>
   );
 

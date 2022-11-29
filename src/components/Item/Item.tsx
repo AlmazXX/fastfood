@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import "./Item.css";
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
   addItem: (name: string) => void;
 }
 
-const Item: React.FC<Props> = ({ name, price, img, addItem }) => {
+const Item: FC<Props> = ({ name, price, img, addItem }) => {
   return (
     <div className="item" onClick={() => addItem(name)}>
       <div>
