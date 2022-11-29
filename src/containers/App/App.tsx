@@ -1,9 +1,11 @@
-import React, { useMemo, useState } from "react";
-import "./App.css";
+import { useMemo, useState } from "react";
 import drink from "../../assets/icons8-cafe-48.png";
 import food from "../../assets/icons8-restaurant-64.png";
 import Details from "../../components/Wrapper/Details";
 import Items from "../../components/Wrapper/Items";
+import { IItemData } from "../../types";
+import "./App.css";
+
 const ITEMS = [
   { name: "Hamburger", price: 80, img: food },
   { name: "Cheeseburger", price: 90, img: food },
@@ -14,7 +16,7 @@ const ITEMS = [
 ];
 
 function App() {
-  const [itemData, setItemCount] = useState([
+  const [itemData, setItemData] = useState<IItemData[]>([
     { name: "Hamburger", price: 0, count: 0 },
     { name: "Cheeseburger", price: 0, count: 0 },
     { name: "Fries", price: 0, count: 0 },
@@ -29,13 +31,13 @@ function App() {
   );
 
   const addItem = (name: string) => {
-    setItemCount((prev) =>
+    const { price } = ITEMS.find((i) => i.name === name)!;
+    setItemData((prev) =>
       prev.map((item) => {
         const itemCopy = { ...item };
         if (item.name === name) {
-          const itemFromITEMS = ITEMS.find((i) => i.name === name)!;
           itemCopy.count = item.count + 1;
-          itemCopy.price = itemCopy.count * itemFromITEMS.price;
+          itemCopy.price = itemCopy.count * price;
         }
         return itemCopy;
       })
@@ -43,7 +45,7 @@ function App() {
   };
 
   const deleteItem = (name: string) => {
-    setItemCount((prev) =>
+    setItemData((prev) =>
       prev.map((item) =>
         item.name === name ? { ...item, count: 0, price: 0 } : item
       )
